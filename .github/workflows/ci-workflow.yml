@@ -2,6 +2,8 @@ name: Continuous Integration
 on: [push]                      # Will make the workflow run every time you push to any branch
 
 jobs:
+  env:
+    SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   build:
     name: Build and test
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
@@ -23,4 +25,7 @@ jobs:
       working-directory: ./DotnetTemplate.Web
     - run: npm t
       working-directory: ./DotnetTemplate.Web
+    - uses: act10ns/slack@v1
+      with: 
+        status: ${{ job.status }}
 
