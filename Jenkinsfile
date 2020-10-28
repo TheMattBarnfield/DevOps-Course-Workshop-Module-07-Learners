@@ -1,9 +1,13 @@
 pipeline {
     agent none
+
     stages {
         stage('Backend build and test') {
             agent {
                 docker { image 'mcr.microsoft.com/dotnet/core/sdk:3.1' }
+            }
+            environment {
+                DOTNET_CLI_HOME = "/tmp/DOTNET_CLI_HOME"
             }
             steps {
                 sh 'dotnet build'
