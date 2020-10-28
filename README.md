@@ -1,4 +1,4 @@
-![CI Build](https://github.com/TheMattBarnfield/DevOps-Course-Workshop-Module-07-Learners/workflows/Continuous%20Integration/badge.svg?branch=master)
+![CI Build](https://github.com/TheMattBarnfield/DevOps-Course-Workshop-Module-07-Learners/workflows/Continuous%20Integration/badge.svg?branch=main)
 
 # Workshop Module 07
 
