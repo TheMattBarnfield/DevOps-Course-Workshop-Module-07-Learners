@@ -1,3 +1,5 @@
+![CI Build](https://github.com/TheMattBarnfield/DevOps-Course-Workshop-Module-07-Learners/workflows/Continuous%20Integration/badge.svg?branch=master)
+
 # Workshop Module 07
 
 This repository is for learners on Corndel's DevOps apprenticeship.
