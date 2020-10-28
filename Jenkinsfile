@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Backend build and test') {
             agent {
-                docker { image 'dotnet/core/sdk' }
+                docker { image 'mcr.microsoft.com/dotnet/core/sdk:3.1' }
             }
             steps {
                 sh 'dotnet build'
