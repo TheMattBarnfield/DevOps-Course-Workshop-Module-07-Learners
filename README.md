@@ -4,7 +4,7 @@
 
 This repository is for learners on Corndel's DevOps apprenticeship.
 
-You can't merge to the main branch unless you raise a pull request that passes the CI tests.
+You can't merge to the main branch unless you raise a pull request that passes the CI tests. Even if you're an admin.
 
 Before the workshop you should complete all the set-up instructions in [before_you_start.md](./before_you_start.md).
 
