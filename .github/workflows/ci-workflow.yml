@@ -61,9 +61,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: akhileshns/heroku-deploy@v3.6.8
-          with:
-            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-            heroku_app_name: "dotnettemplate-softwire" 
-            heroku_email: "lucas.nogueira@softwire.com"
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "dotnettemplate-softwire" 
+          heroku_email: "lucas.nogueira@softwire.com"
             
 
