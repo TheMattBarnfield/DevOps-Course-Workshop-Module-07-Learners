@@ -1,0 +1,35 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and test and publish
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.x'
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - run: dotnet build
+    - run: dotnet test
+    - run: npm i
+      working-directory: ./DotnetTemplate.Web
+    - run: npm run build
+      working-directory: ./DotnetTemplate.Web
+    - run: npm run lint
+      working-directory: ./DotnetTemplate.Web
+    - run: npm t
+      working-directory: ./DotnetTemplate.Web
+    - uses: act10ns/slack@v1
+      with: 
+        status: ${{ job.status }}
+      if: always()
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
