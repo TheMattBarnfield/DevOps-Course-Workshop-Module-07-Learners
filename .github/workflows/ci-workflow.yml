@@ -66,6 +66,14 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "dotnettemplate-softwire" 
           heroku_email: "lucas.nogueira@softwire.com"
-          healthcheck: "https://dotnettemplate-softwire.herokuapp.com"
+          healthcheck: "https://dotnettemplate-software.herokuapp.com"
+          rollbackonhealthcheckfailed: true
+      - uses: 8398a7/action-slack@v3
+        if: ${{ failure() }}
+        with:
+          status: ${{ job.status }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+  
             
 
