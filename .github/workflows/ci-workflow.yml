@@ -66,5 +66,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "dotnettemplate-softwire" 
           heroku_email: "lucas.nogueira@softwire.com"
+          healthcheck: "https://dotnettemplate-softwire.herokuapp.com"
             
 
