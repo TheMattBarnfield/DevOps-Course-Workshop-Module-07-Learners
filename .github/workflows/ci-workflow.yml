@@ -10,10 +10,10 @@ on:
 
 jobs:
   build:
-    name: Build and test
-    runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
+    name: Build and test and publish
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2 # Adds a step to checkout the repository code
+    - uses: actions/checkout@v2
     - uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '3.1.x'
@@ -36,10 +36,6 @@ jobs:
       if: always()
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-  push_to_registry:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
