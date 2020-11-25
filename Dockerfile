@@ -1,25 +1,18 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
-WORKDIR /source
+FROM mcr.microsoft.com/dotnet/sdk:3.1
 
-# Install node
-RUN apt-get update -yq 
-RUN apt-get install curl gnupg -yq 
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
-RUN apt-get install -y nodejs
+EXPOSE 5000
 
-# Copy csproj and restore as distinct layers
-COPY *.sln .
-COPY DotnetTemplate.Web/*.csproj ./DotnetTemplate.Web/
-COPY DotnetTemplate.Web.Tests/*.csproj ./DotnetTemplate.Web.Tests/
-RUN dotnet restore
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
+    apt-get install -y nodejs
 
-# Copy everything else and build
-COPY DotnetTemplate.Web/. ./DotnetTemplate.Web/
-WORKDIR /source/DotnetTemplate.Web
-RUN dotnet publish -c Release -o /app
+COPY DotnetTemplate.Web DotnetTemplate.Web
+COPY DotnetTemplate.Web.Tests DotnetTemplate.Web.Tests
+COPY DotnetTemplate.sln DotnetTemplate.sln
 
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
-WORKDIR /app
-COPY --from=build-env /app ./
-ENTRYPOINT ["dotnet", "DotnetTemplate.Web.dll"]
+RUN dotnet build
+
+WORKDIR DotnetTemplate.Web
+
+RUN npm run build
+
+ENTRYPOINT dotnet run
